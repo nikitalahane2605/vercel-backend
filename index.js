@@ -32,7 +32,7 @@ app.post("/upload", upload.single('product'), (req, res) => {
   })
 })
 
-
+require('dotenv').config(); // Loads .env variables into process.env
 // Route for Images folder
 app.use('/images', express.static('upload/images'));
 
