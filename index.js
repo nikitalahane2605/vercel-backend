@@ -3,7 +3,6 @@ const app = express();
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
-const upload = multer({ storage: multer.memoryStorage() });
 const path = require("path");
 const cors = require("cors");
 const port = process.env.PORT || 4000;
@@ -25,7 +24,7 @@ const storage = multer.diskStorage({
     return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
   }
 })
-
+const upload = multer({ storage: storage })
 app.post("/upload", upload.single('product'), (req, res) => {
   res.json({
     success: 1,
